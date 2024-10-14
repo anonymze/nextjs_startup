@@ -1,7 +1,7 @@
 import "@/styles/app.css";
 import { GeistSans } from "geist/font/sans";
 
-import type { PageParamsI18n } from "@/types/i18n";
+import type { PageProps } from "@/types/page";
 import { type Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -9,13 +9,12 @@ export const metadata: Metadata = {
   icons: [{ rel: "icon", url: "/favicon.ico" }],
 };
 
-export default function RootLayout({
-  children,
-  params: { lang },
-}: Readonly<{ children: React.ReactNode } & PageParamsI18n>) {
+export default function RootLayout({ children, params }: PageProps) {
   return (
-    <html lang={lang} className={`${GeistSans.variable} dark`}>
-      <body>{children}</body>
+    <html lang={params.lang} className={`${GeistSans.variable}`}>
+      <body>
+        {children}
+      </body>
     </html>
   );
 }

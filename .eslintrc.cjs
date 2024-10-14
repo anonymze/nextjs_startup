@@ -12,6 +12,7 @@ const config = {
   ],
   rules: {
     // "@typescript-eslint/no-unsafe-return": "off",
+    "@typescript-eslint/no-require-imports": "off",
     "@typescript-eslint/no-empty-object-type": "warn",
     "import/no-anonymous-default-export": "off",
     "@typescript-eslint/no-duplicate-enum-values": "warn",

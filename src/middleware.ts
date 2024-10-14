@@ -17,26 +17,19 @@ export const config = {
 };
 
 export const middleware = (req: NextRequest) => {
-  // pathname looks like this "/xxx"
-  const { pathname, origin } = req.nextUrl;
+  const preferedLocale = getPreferedLocale(req.headers, languages);
 
-  // we verify the url contains a language we handle
-  const pathnameHasLocale = languages.some((lang) => {
-    return (
-      pathname.startsWith(`/${lang}/`) ||
-      (pathname.startsWith(`/${lang}`) && pathname.length === 3)
-    );
-  });
+  const { pathnameWithoutLocale, pathnameHasLocale, pathnameWithLocale } =
+    getInfosPathname(req.nextUrl.pathname, preferedLocale);
 
-  // if not we redirect but with the locale in the pathname
   if (!pathnameHasLocale) {
-    const preferedLocale = getPreferedLocale(req.headers, languages);
-    req.nextUrl.pathname = `/${preferedLocale}${pathname}`;
+    req.nextUrl.pathname = pathnameWithLocale;
     return NextResponse.redirect(req.nextUrl);
   }
 };
+
 /**
- * @description - get the prefered locale from the headers
+ * @returns the prefered locale from the headers
  */
 export function getPreferedLocale(
   headers: Headers,
@@ -50,4 +43,37 @@ export function getPreferedLocale(
   });
 
   return negotiator.language(localesAccepted) ?? defaultLocale;
+}
+
+/**
+ * @returns informations about the pathname
+ */
+function getInfosPathname(
+  pathname: NextRequest["nextUrl"]["pathname"],
+  preferedLocale: string,
+) {
+  let pathnameWithoutLocale = pathname;
+
+  // we verify the url contains a language we handle
+  const pathnameHasLocale = languages.some((lang) => {
+    if (
+      pathname.startsWith(`/${lang}/`) ||
+      (pathname.startsWith(`/${lang}`) && pathname.length === lang.length + 1)
+    ) {
+      // if we found a langage we update the variable pathnameWithoutLocale
+      pathnameWithoutLocale = pathname.slice(lang.length + 1);
+      return true;
+    }
+
+    return false;
+  });
+
+  return {
+    locale: preferedLocale,
+    pathnameHasLocale,
+    pathnameWithoutLocale,
+    pathnameWithLocale: !pathnameHasLocale
+      ? `/${preferedLocale}${pathname}`
+      : pathname,
+  };
 }
