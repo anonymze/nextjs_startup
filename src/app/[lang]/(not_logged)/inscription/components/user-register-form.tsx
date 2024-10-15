@@ -107,7 +107,7 @@ export default function UserRegisterForm() {
     <>
       <div className="flex w-full items-center justify-center bg-white">
         <div className="w-full max-w-2xl space-y-8 px-4 sm:px-6">
-          <p className="text-sm">* Champs obligatoires</p>
+          <p className="text-sm text-primary">* Champs obligatoires</p>
           <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
               <div className="flex items-center gap-5 pb-3 font-semibold uppercase">
@@ -124,7 +124,7 @@ export default function UserRegisterForm() {
                     name="firstname"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel>Prénom</FormLabel>
+                        <FormLabel>Prénom *</FormLabel>
                         <FormControl>
                           <Input placeholder="Prénom" {...field} />
                         </FormControl>
@@ -205,7 +205,7 @@ export default function UserRegisterForm() {
                 <Separator className="hidden flex-1 sm:flex" />
               </div>
 
-              <p className="text-md">
+              <p className="text-md text-muted-foreground">
                 Choisissez les instruments sur lesquelles vous pouvez apporter
                 votre expertise.
               </p>
@@ -348,7 +348,7 @@ export default function UserRegisterForm() {
                 </div>
               </fieldset>
 
-              <p className="text-base">Renseignez vos disponiblités.</p>
+              <p className="text-base text-muted-foreground">Renseignez vos disponiblités.</p>
 
               <div className="flex items-center gap-5 pb-3 pt-6 font-semibold uppercase">
                 <Separator className="hidden max-w-12 flex-1 sm:flex" />
@@ -356,7 +356,7 @@ export default function UserRegisterForm() {
                 <Separator className="hidden flex-1 sm:flex" />
               </div>
 
-              <p className="text-base">
+              <p className="text-base text-muted-foreground">
                 Ces informations serviront aux paiements de vos prestations.
               </p>
 
@@ -412,7 +412,7 @@ export default function UserRegisterForm() {
               Se connecter
             </LinkLocale>
           </div>
-          <div className="text-center text-xs text-gray-500">
+          <div className="text-center text-xs text-muted-foreground">
             En continuant vous acceptez les{" "}
             <LinkLocale
               className="underline"

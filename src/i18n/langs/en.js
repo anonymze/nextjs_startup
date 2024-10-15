@@ -100,7 +100,7 @@ export default {
   PAGES: "Pages",
   PARAMETERS: "Parameters",
   PASSWORD: "Password",
-  PORTAIL_CONNECTION: "Connexion portail",
+  PORTAL_CONNECTION: "Connexion portal",
   PREVIOUS: "Previous",
   PRIVACY_POLICY: "Privacy policy",
   PRIVACY_POLICY_CONTENT_1:
@@ -164,6 +164,6 @@ export default {
   UUID: "UUID",
   VALIDATE_CODE: "Validate the code",
   WELCOME_TO_YOUR_WORLD:
-    "Welcome to our portal dedicated to experts in musical instrument repair. Find the best products and tools for your craft here. Join our community of passionate experts.",
+    "Welcome to our portal dedicated to experts in musical instrument repair. Join our community of passionate experts.",
   YOUR_PROFILE: "Your profile",
 };

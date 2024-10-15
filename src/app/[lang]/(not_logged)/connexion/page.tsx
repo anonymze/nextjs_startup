@@ -1,11 +1,10 @@
 import { i18n } from "@/i18n/translations";
-import { MusicIcon } from "lucide-react";
-import type { ResolvingMetadata, Metadata } from "next";
-import type { PageParamsI18n } from "@/types/i18n";
 import LinkLocale from "@/components/LinkLocale";
 import { UserLoginForm } from "./components/user-login-form";
-import type { PageProps } from "@/types/page";
 import Logo from "@/components/Logo";
+import type { PageParamsI18n } from "@/types/i18n";
+import type { PageProps } from "@/types/page";
+import type { ResolvingMetadata, Metadata } from "next";
 
 export async function generateMetadata(
   { params: { lang } }: PageParamsI18n,
@@ -25,10 +24,13 @@ export default function Page({ params: { lang } }: PageProps) {
         </div>
       </div>
       <div className="relative hidden h-full flex-col bg-muted p-10 text-white dark:border-r lg:flex">
-        <div className="absolute inset-0 bg-zinc-900" />
+        <video className="absolute inset-0 w-full h-full object-cover" playsInline  autoPlay muted loop>
+          <source src="/restauration.mp4" type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
         <div className="relative z-20 mt-auto">
-          <blockquote className="space-y-2">
-            <p className="text-lg">
+          <blockquote className="space-y-2" style={{ textShadow: "1px 1px 18px #000"}}>
+            <p className="text-lg text-white" >
               &ldquo;{i18n[lang]("WELCOME_TO_YOUR_WORLD")}&rdquo;
             </p>
             <footer className="flex items-center text-sm">
@@ -40,9 +42,7 @@ export default function Page({ params: { lang } }: PageProps) {
       <div className="lg:p-8">
         <div className="mx-auto flex w-full max-w-[420px] flex-col justify-center space-y-6">
           <div className="flex flex-col space-y-2 text-center">
-            <h1 className="text-2xl font-semibold tracking-tight">
-              {i18n[lang]("PORTAIL_CONNECTION")}
-            </h1>
+            <h1>{i18n[lang]("PORTAL_CONNECTION")}</h1>
             <p className="text-sm text-muted-foreground">
               {i18n[lang]("ENTER_EMAIL_PASSWORD")}
             </p>
@@ -63,7 +63,7 @@ export default function Page({ params: { lang } }: PageProps) {
           <p className="px-8 text-center text-xs text-muted-foreground">
             {i18n[lang]("BY_CLICKING_CONTINUE_YOU_AGREE")}{" "}
             <LinkLocale
-              className="underline underline-offset-4 hover:text-primary"
+              className="underline underline-offset-4"
               pathname="/conditions-utilisation"
               lang={lang}
             >
@@ -71,7 +71,7 @@ export default function Page({ params: { lang } }: PageProps) {
             </LinkLocale>{" "}
             {i18n[lang]("AND")}{" "}
             <LinkLocale
-              className="underline underline-offset-4 hover:text-primary"
+              className="underline underline-offset-4"
               pathname="/politique-confidentialite"
               lang={lang}
             >

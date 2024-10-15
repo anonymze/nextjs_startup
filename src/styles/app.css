@@ -2,16 +2,20 @@
 @import './_shadcn.css';
 
 body {
-	color: var(--foreground);
+	color: hsl(var(--foreground));
 }
 
 h1 {
-	font-size: 24px;
+	font-size: 26px;
 	font-weight: 700;
 	text-transform: uppercase;
 }
 
-.perfect-shadow {
+h2, h3, p {
+	color: hsl(var(--dark));
+}
+ 
+/* .perfect-shadow {
 	--base: hsl(var(--tint, 344) 100% 64% / calc(var(--alpha, 60) * 1%));
 	--shade: hsl(from var(--base) calc(h + 8) 25 calc(l - 5));
 	--perfect-shadow:
@@ -23,4 +27,4 @@ h1 {
 		0 24px 24px -12px var(--base);
 
 	box-shadow: var(--perfect-shadow);
-}
+} */
